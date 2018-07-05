@@ -3,7 +3,7 @@ package ru.melnikov.converter;
 
 class Converter {
 
-    public String parse(String ucid) throws UcidFormatException {
+    String parse(String ucid) throws UcidFormatException {
         if (ucid == null) throw new UcidFormatException("ucid is null");
         ucid = ucid.trim();
         int length = ucid.length();
@@ -23,7 +23,7 @@ class Converter {
         return rez + "";
     }
 
-    public String parseACR(String acr) throws UcidFormatException {
+    String parseACR(String acr) throws UcidFormatException {
         if (acr == null) throw new UcidFormatException("ACR Call ID is null");
         if (acr.length() < 16) throw new UcidFormatException("INVALID ACR Call ID = " + acr);
         String sRez;
