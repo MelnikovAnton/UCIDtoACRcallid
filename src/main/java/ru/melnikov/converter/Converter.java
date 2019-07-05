@@ -1,6 +1,8 @@
 package ru.melnikov.converter;
 
 
+import com.google.common.base.Strings;
+
 class Converter {
 
     String parse(String ucid) throws UcidFormatException {
@@ -25,7 +27,7 @@ class Converter {
 
     String parseACR(String acr) throws UcidFormatException {
         if (acr == null) throw new UcidFormatException("ACR Call ID is null");
-        if (acr.length() < 16) throw new UcidFormatException("INVALID ACR Call ID = " + acr);
+        //if (acr.length() < 16) throw new UcidFormatException("INVALID ACR Call ID = " + acr);
         String sRez;
         acr = acr.trim();
         long rez = Long.parseLong(acr);
@@ -33,9 +35,9 @@ class Converter {
         long c2 = (rez - (c1 << 48)) >> 32;
         long c3 = rez - (c1 << 48) - (c2 << 32);
 
-        sRez = "0" + String.valueOf(c1) + String.valueOf(c2) + String.valueOf(c3);
+        sRez =  String.valueOf(c1) + String.valueOf(c2) + String.valueOf(c3);
 
-        return sRez;
+        return Strings.padStart(sRez,20,'0');
     }
 
 
